@@ -1,0 +1,30 @@
+program: opencood/tools/train_test.py
+name: rinne-former-sweep
+method: random
+metric:
+  name: val_loss
+  goal: minimize
+parameters:
+  hypes_yaml:
+    values: ['wandb/hypes_yaml/test.yaml']
+
+  train_params:
+    parameters:
+      batch_size:
+        values: [2]
+      epoches:
+        values: [20]
+  optimizer:
+    parameters:
+      lr:
+        values: [0.01]
+      core_method:
+        values: ['Adam']
+  model:
+    parameters:
+      point_transformer_vfe:
+        parameters:
+          num_encoders:
+            values: [3]
+          no_of_heads:
+            values: [2]

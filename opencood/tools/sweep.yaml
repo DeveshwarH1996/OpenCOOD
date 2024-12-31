@@ -1,0 +1,43 @@
+# run the following command to start the sweep
+# wandb sweep [PATH_TO_SWEEP_YAML]
+# wandb agent [SWEEP_ID] --count [NUMBER_OF_RUNS]
+program: opencood/tools/train_wandb.py
+name: rinne-former-sweep
+method: random
+metric:
+  name: val_loss
+  goal: minimize
+# command:
+# - /home/ecoprt/miniconda3/envs/opencood/bin/python
+# - "-m"
+# - "torch.distributed.launch"
+# - "--nproc_per_node=2"
+# - "--use_env"
+# - ${program}
+# - ${args}
+
+parameters:
+  hypes_yaml:
+    values: ['opencood/hypes_yaml/point_pillar_v2xvit_PointTransformer_multi_head.yaml']
+
+  train_params:
+    parameters:
+      batch_size:
+        values: [2]
+      epoches:
+        values: [20, 40, 60]
+  optimizer:
+    parameters:
+      lr:
+        min: 0.0001
+        max: 0.01
+      core_method:
+        values: ['Adam']
+  model:
+    parameters:
+      point_transformer_vfe:
+        parameters:
+          no_of_heads:
+            values: [2, 4, 8, 16]
+          sparse_threshold:
+            values: [4, 8, 16, 32]
