@@ -60,7 +60,7 @@ want to explore the tasks that the origin dataset do not support. Check [here](l
 - **Provide a convenient log replay toolbox for OPV2V dataset.** Check [here](logreplay/README.md) to see more details.
 
 ## Data Downloading
-All the data can be downloaded from [google drive](https://drive.google.com/drive/folders/1dkDeHlwOVbmgXcDazZvO6TFEZ6V_7WUu). If you have a good internet, you can directly
+All the data can be downloaded from [UCLA BOX](https://ucla.app.box.com/v/UCLA-MobilityLab-OPV2V). If you have a good internet, you can directly
 download the complete large zip file such as `train.zip`. In case you suffer from downloading large files, we also split each data set into small chunks, which can be found 
 in the directory ending with `_chunks`, such as `train_chunks`. After downloading, please run the following command to each set to merge those chunks together:
 ```python
@@ -126,23 +126,23 @@ The evaluation results  will be dumped in the model directory.
 
 |                    | Spconv Version| Backbone   | Fusion Strategy  | Bandwidth (Megabit), <br/> before/after compression| Default Towns    |Culver City| Download |
 |--------------------| -------|--------   | ---------------  | ---------------                | -------------    |-----------| -------- |
-| Naive Late         | 1.2.1 | PointPillar        | Late      |    **0.024**/**0.024** |   0.781/0.781        | 0.668/0.668         |    [url](https://drive.google.com/file/d/1WTKooW6k0exLqoIE5Czqy6ptycYlgKZz/view?usp=sharing)   |
-| [Cooper](https://arxiv.org/abs/1905.05265)   | 1.2.1     | PointPillar        | Early  |   7.68/7.68   | 0.800/x         | 0.696/x       | [url](https://drive.google.com/file/d/16hVkjpBUGfCByHjSmT8atCSZ2z2KuJBj/view?usp=share_link)     | 
-| [Attentive Fusion](https://arxiv.org/abs/2109.07644)  | 1.2.1        | PointPillar        | Intermediate  | 126.8/1.98   | 0.815/0.810       | 0.735/0.731        | [url](https://drive.google.com/file/d/11pG0kf2uR9N_o_ACBi_zfd7flGCgZt40/view?usp=sharing)     | 
-| [F-Cooper](https://arxiv.org/abs/1909.06459)   | 1.2.1       | PointPillar        | Intermediate  | 72.08/1.12    | 0.790/0.788     | 0.728/0.726        | [url](https://drive.google.com/file/d/1CjXu9Y2ZTzJA6Oo3hnqFhbTqBVKq3mQb/view?usp=sharing)     | 
-| [V2VNet](https://arxiv.org/abs/2008.07519)  | 1.2.1        | PointPillar        | Intermediate  | 72.08/1.12    | 0.822/0.814     | 0.734/0.729    | [url](https://drive.google.com/file/d/14xl_gNEIHcDw-SvQyO1ioQwyzGym-tKX/view?usp=sharing)     |
+| Naive Late         | 1.2.1 | PointPillar        | Late      |    **0.024**/**0.024** |   0.781/0.781        | 0.668/0.668         |    [url](https://ucla.app.box.com/v/UCLA-MobilityLab-OPV2V/file/1621128604521)   |
+| [Cooper](https://arxiv.org/abs/1905.05265)   | 1.2.1     | PointPillar        | Early  |   7.68/7.68   | 0.800/x         | 0.696/x       | [url](https://ucla.app.box.com/v/UCLA-MobilityLab-OPV2V/file/1621122534978)     | 
+| [Attentive Fusion](https://arxiv.org/abs/2109.07644)  | 1.2.1        | PointPillar        | Intermediate  | 126.8/1.98   | 0.815/0.810       | 0.735/0.731        | [url](https://ucla.app.box.com/v/UCLA-MobilityLab-OPV2V/file/1621110356814)     | 
+| [F-Cooper](https://arxiv.org/abs/1909.06459)   | 1.2.1       | PointPillar        | Intermediate  | 72.08/1.12    | 0.790/0.788     | 0.728/0.726        | [url](https://ucla.app.box.com/v/UCLA-MobilityLab-OPV2V/file/1621123814293)     | 
+| [V2VNet](https://arxiv.org/abs/2008.07519)  | 1.2.1        | PointPillar        | Intermediate  | 72.08/1.12    | 0.822/0.814     | 0.734/0.729    | [url](https://ucla.app.box.com/v/UCLA-MobilityLab-OPV2V/file/1621111444798)     |
 | [CoAlign](https://arxiv.org/abs/2211.07214) | 1.2.1        | PointPillar        | Intermediate  | 72.08/2.24     |  **0.833**/0.806 | 0.760/ **0.750** | [url](https://drive.google.com/file/d/1mUEI_Dh4tkG6-LG3QcZ05kK7oOGJzCGK/view?usp=sharing)
-| [FPV-RCNN](https://arxiv.org/abs/2109.11615)   | 1.2.1       | PV-RCNN        | Intermediate(2 stage)  | 0.24/0.24    | 0.820/0.820     | 0.763/**0.763**    | [url](https://drive.google.com/file/d/1iOVi7holJ-Cu2P3dRv5HmOWlB5lkLukJ/view)     | 
+| [FPV-RCNN](https://arxiv.org/abs/2109.11615)   | 1.2.1       | PV-RCNN        | Intermediate(2 stage)  | 0.24/0.24    | 0.820/0.820     | 0.763/**0.763**    | [url](https://ucla.app.box.com/v/UCLA-MobilityLab-OPV2V/file/1621109586667)     | 
 | [V2VAM](https://arxiv.org/pdf/2212.08273.pdf)  | 1.2.1       | PointPillar      | Intermediate  |  x/x     | **0.860**/**0.860**     | **0.813**/**0.791**   | [url](https://drive.google.com/drive/folders/1gFY6Aedrbi3vLJdPZ3x9abPnfW5w_HKN?usp=sharing)     |
-| [CoBEVT]( https://arxiv.org/pdf/2207.02202.pdf)  | 2.0       | PointPillar      | Intermediate  |  72.08/1.12     | **0.861**/**0.836**     | **0.773**/0.730   | [url](https://drive.google.com/drive/folders/1h5aawoH5l4cjWJBUSdQBVWd9B79nukWK?usp=share_link)     | 
+| [CoBEVT]( https://arxiv.org/pdf/2207.02202.pdf)  | 2.0       | PointPillar      | Intermediate  |  72.08/1.12     | **0.861**/**0.836**     | **0.773**/0.730   | [url](https://ucla.app.box.com/v/UCLA-MobilityLab-OPV2V/folder/280139625059)     | 
 | Naive Late    | 1.2.1      | VoxelNet        | Late  | **0.024**/**0.024**    | 0.738/0.738          | 0.588/0.588        | [url]()    |
-| Cooper   | 1.2.1  | VoxelNet        | Early   |   7.68/7.68  | 0.758/x        | 0.677/x        | [url](https://drive.google.com/file/d/14WD7iLLyyCJJ3lApbYYdr5KOUM1ACnve/view?usp=sharing)     | 
-| Attentive Fusion    | 1.2.1     | VoxelNet        | Intermediate |   576.71/1.12   | **0.864**/**0.852**        | **0.775**/**0.746**       | [url](https://drive.google.com/file/d/16q8CfcB8dS4EVhJMvvEfn0gM2ynxZB3E/view?usp=sharing)      | 
-| Naive Late    | 1.2.1      | SECOND        | Late |  **0.024**/**0.024**    |  0.775/0.775        |0.682/0.682        | [url](https://drive.google.com/file/d/1VG_FKe1mKagPVGXH7UGHpyaM5q3cxtD8/view?usp=sharing)      |
+| Cooper   | 1.2.1  | VoxelNet        | Early   |   7.68/7.68  | 0.758/x        | 0.677/x        | [url](https://ucla.app.box.com/v/UCLA-MobilityLab-OPV2V/file/1621124922131)     | 
+| Attentive Fusion    | 1.2.1     | VoxelNet        | Intermediate |   576.71/1.12   | **0.864**/**0.852**        | **0.775**/**0.746**       | [url](https://ucla.app.box.com/v/UCLA-MobilityLab-OPV2V/file/1621111451952)      | 
+| Naive Late    | 1.2.1      | SECOND        | Late |  **0.024**/**0.024**    |  0.775/0.775        |0.682/0.682        | [url](https://ucla.app.box.com/v/UCLA-MobilityLab-OPV2V/file/1621113752957)      |
 | Cooper  | 1.2.1   | SECOND        | Early  |   7.68/7.68   |  0.813/x       |  0.738/x     | [url](https://drive.google.com/file/d/1Z9io1VNcU-urcRW8l0ogWCTVCB53mw4N/view?usp=sharing)     | 
-| Attentive     | 1.2.1     | SECOND        | Intermediate |  63.4/0.99     |   **0.826**/**0.783**     | **0.760**/**0.760**    | [url](https://drive.google.com/file/d/1zEB8EyZ0X-WQykHFOM0pVwI8jXunRz1Z/view?usp=sharing)      | 
+| Attentive     | 1.2.1     | SECOND        | Intermediate |  63.4/0.99     |   **0.826**/**0.783**     | **0.760**/**0.760**    | [url](https://ucla.app.box.com/v/UCLA-MobilityLab-OPV2V/file/1621121166914)      | 
 | Naive Late    | 1.2.1      | PIXOR        | Late |    **0.024**/**0.024** |    0.578/0.578       |  0.360/0.360      | [url]()      |
-| Cooper | 1.2.1    | PIXOR        | Early |   7.68/7.68    |   0.678/x      | **0.558**/x      | [url](https://drive.google.com/file/d/1ZDLjtizZCuV6D92LloEPKRIw-LqxfE1j/view?usp=sharing)     | 
+| Cooper | 1.2.1    | PIXOR        | Early |   7.68/7.68    |   0.678/x      | **0.558**/x      | [url](https://ucla.app.box.com/v/UCLA-MobilityLab-OPV2V/file/1621127209949)     | 
 | Attentive   | 1.2.1       | PIXOR        | Intermediate  |   313.75/1.22  |  **0.687**/**0.612**      | 0.546/**0.492**       | [url]()      |
 
 **Note**: 
@@ -165,7 +165,7 @@ can not be considered to employ in practice.
 | [V2VNet](https://arxiv.org/abs/2008.07519)         | CVT        | Intermediate  | 53.5     | 60.2     | 47.5   | [None]()     | 
 | [DiscoNet](https://arxiv.org/abs/2109.11615)         | CVT       | Intermediate  | 52.9   |  60.7   | 45.8    | [None]()     | 
 | [FuseBEVT](https://arxiv.org/pdf/2207.02202.pdf)        | CVT        | Intermediate  | 59.0     | 62.1        | 49.2      | [url]()    |
-| [CoBEVT](https://arxiv.org/pdf/2207.02202.pdf)        | SinBEVT        | Intermediate  | **60.4**     | **63.0**          | **53.0**      | [url](https://drive.google.com/drive/folders/1NLzyvMFxuv8Qy52q_OzcNsugTS5JacAT)    |
+| [CoBEVT](https://arxiv.org/pdf/2207.02202.pdf)        | SinBEVT        | Intermediate  | **60.4**     | **63.0**          | **53.0**      | [url](https://ucla.app.box.com/v/UCLA-MobilityLab-OPV2V/folder/280139287054)    |
 
 **Note**: 
 To play with OPV2V camera data, please check here: https://github.com/DerrickXuNu/CoBEVT
@@ -180,9 +180,9 @@ To play with OPV2V camera data, please check here: https://github.com/DerrickXuN
 | [Attentive Fusion](https://arxiv.org/abs/2109.07644)     |       2.0      | PointPillar | 80.7           | 66.4           | 70.9         | 48.7         |                                                                          |
 | [V2VNet](https://arxiv.org/abs/2008.07519)         |       2.0      | PointPillar | 84.5           | 67.7           | 79.1         | 49.3         |                                                                          |
 | [DiscoNet](https://arxiv.org/abs/2109.11615)      |       2.0      | PointPillar | 84.4           | 69.5           | 79.8         | 54.1         |                
-| [CoBEVT](https://arxiv.org/abs/2207.02202)      |       2.0      | PointPillar |    84.9      |  66.0   | 81.1   | 54.3  | [url](https://drive.google.com/file/d/1aNL2L779C5PBYIA5AjVWWNmld1tulens) ||
-| [Where2Comm](https://arxiv.org/abs/2209.12836)     |       2.0      | PointPillar |   85.5 | 65.4 | 82.0| 53.4 | [url](https://drive.google.com/file/d/1IAcnfLCSPIt9pyfiZcF1RnKOTkbIfUcJ/view?usp=share_link) ||
-| [V2X-ViT](https://arxiv.org/pdf/2203.10638.pdf)      |       2.0      | PointPillar | **88.2**           | **71.2**           | **83.6**         | **61.4**         | [url](https://drive.google.com/drive/folders/1h2UOPP2tNRkV_s6cbKcSfMvTgb8_ZFj9) |
+| [CoBEVT](https://arxiv.org/abs/2207.02202)      |       2.0      | PointPillar |    84.9      |  66.0   | 81.1   | 54.3  | [url](https://ucla.app.box.com/v/UCLA-MobilityLab-V2XVIT/file/1622754822466) ||
+| [Where2Comm](https://arxiv.org/abs/2209.12836)     |       2.0      | PointPillar |   85.5 | 65.4 | 82.0| 53.4 | [URL](https://ucla.app.box.com/v/UCLA-MobilityLab-OPV2V/file/1621122986293) ||
+| [V2X-ViT](https://arxiv.org/pdf/2203.10638.pdf)      |       2.0      | PointPillar | **88.2**           | **71.2**           | **83.6**         | **61.4**         | [url](https://ucla.app.box.com/v/UCLA-MobilityLab-V2XVIT/folder/280421221519) |
 
 <strong>Important Notes for Training in V2XSet:</strong>
 1. When you train from scratch, please first set `async` and `loc_err` to false to train on perfect setting. Also, set `compression` to 0 at beginning.
