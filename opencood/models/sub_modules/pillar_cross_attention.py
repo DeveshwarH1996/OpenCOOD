@@ -29,14 +29,20 @@ class PillarCrossAttention(nn.Module):
         self.linear_key = nn.Linear(self.num_pillar_features, self.num_output_CA_features)
         self.linear_value = nn.Linear(self.num_pillar_features, self.num_output_CA_features)
 
-        # Sinusoidal positional encoding
-        self.positional_encoding = self.sinusoidal_positional_encoding(self.kernel_size, self.num_pillar_features)
-        self.positional_encoding = nn.Parameter(self.positional_encoding, requires_grad=False)
+        # Learnable positional encoding
+        self.positional_encoding = nn.Sequential(
+            nn.Linear(2, 4),
+            nn.Linear(4, 8),
+            nn.ReLU(),
+            nn.Linear(8, self.num_pillar_features)
+        )
+        
         self.is_mask = False
 
-    def sinusoidal_positional_encoding(self, kernel_size, num_pillar_features):
-        '''Sinusoidal Positional Encoding
-            It generates the sinusoidal positional encoding of shape (kernel_size**2, num_pillar_features)
+    def positional_encoder(self, device):
+        '''This function generates the positional encoding for the cross attention mechanism
+        It does so by taking the coordinates of a tensor similar to the kernel and generates position encoding that 
+        is added to the input features of the pillars
         Args:
             kernel_size (int): Kernel size of the cross attention mechanism
             num_pillar_features (int): Number of input features of the pillars
@@ -44,20 +50,12 @@ class PillarCrossAttention(nn.Module):
             torch.Tensor: Sinusoidal positional encoding
         '''
         
-        # Generate the positions
-        positions = torch.arange(0, kernel_size**2, dtype=torch.float32).unsqueeze(1)
-        # Generate the dimensions
-        dimensions = torch.arange(0, num_pillar_features, 2, dtype=torch.float32)
+        coordinates = torch.arange(self.kernel_size).float().repeat(self.kernel_size, 1).to(device)
+        coordinates = torch.cat([coordinates.t().unsqueeze(-1), coordinates.unsqueeze(-1)], dim=-1)
+        coordinates = coordinates.reshape(-1, 2).requires_grad_(False)
+        position_encoder = self.positional_encoding(coordinates)
 
-        # Compute the angles
-        angles = positions / torch.pow(10000, 2 * dimensions / num_pillar_features)
-
-        # Compute the sinusoidal positional encoding
-        positional_encoding = torch.zeros(kernel_size**2, num_pillar_features)
-        positional_encoding[:, 0::2] = torch.sin(angles)
-        positional_encoding[:, 1::2] = torch.cos(angles)
-
-        return positional_encoding
+        return position_encoder
     
     def create_mask(self, H, W, kernel_size):
         '''Create Mask
@@ -73,7 +71,7 @@ class PillarCrossAttention(nn.Module):
         mask = torch.ones(H, W).unsqueeze(0).unsqueeze(1)
         mask = F.unfold(mask, (kernel_size, kernel_size), stride=1)
         mask = F.fold(mask, (H, W), (kernel_size, kernel_size), stride=1)
-        mask = mask.detach()
+        mask = mask.requires_grad_(False)
         self.is_mask = True
 
         return mask
@@ -106,16 +104,33 @@ class PillarCrossAttention(nn.Module):
                     width_quotient -= 1
                     is_reduce_width = True
                 
-                kernel = pseudo_image[:, :, i:i+self.kernel_size*length_quotient, j:j+self.kernel_size*width_quotient].to(pseudo_image)
+                kernel = pseudo_image[:, :, i:i+self.kernel_size*length_quotient, j:j+self.kernel_size*width_quotient].to(pseudo_image.device)
                 kernel = einops.rearrange(kernel, 'b c (l k1) (w k2) -> b (l w) (k1 k2) c', k1 = self.kernel_size, k2 = self.kernel_size)
 
-                # Compute the positional encoding
-                kernel += self.positional_encoding.to(pseudo_image.device)
+                # # Compute the positional encoding
+                # positional_encoder = self.positional_encoder(pseudo_image.device)
+                # kernel += positional_encoder.to(pseudo_image.device)
+
+                # # Compute the query, key and value
+                # query = self.linear_query(kernel)
+                # key = self.linear_key(kernel)
+                # value = self.linear_value(kernel)
+
 
                 # Compute the query, key and value
                 query = self.linear_query(kernel)
                 key = self.linear_key(kernel)
                 value = self.linear_value(kernel)
+
+                # Compute the positional encoding
+                positional_encoder = self.positional_encoder(pseudo_image.device)
+                positional_encoder = positional_encoder.view(1, 1, self.kernel_size, self.kernel_size, -1)
+                positional_encoder = einops.rearrange(positional_encoder, 'b l w c -> b (l w) c')
+                
+                # Add positional encoding to key and value
+                key += positional_encoder
+                value += positional_encoder
+
 
 
                 # Compute the attention

@@ -83,7 +83,7 @@ def setup_train(hypes):
     current_path = os.path.join(current_path, '../logs')
 
     full_path = os.path.join(current_path, folder_name)
-
+    print('saving model to %s' % full_path)
     if not os.path.exists(full_path):
         if not os.path.exists(full_path):
             try:

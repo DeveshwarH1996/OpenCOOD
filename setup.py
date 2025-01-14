@@ -1,19 +1,15 @@
-# -*- coding: utf-8 -*-
-# Author: Runsheng Xu <rxx3386@ucla.edu>
-# License: TDG-Attribution-NonCommercial-NoDistrib
-
-
+# filepath: /mnt/ext-vol/OpenCOOD/OpenCOOD/setup.py
+from setuptools import setup, find_packages
+from Cython.Build import cythonize
+import numpy
 from os.path import dirname, realpath
-from setuptools import setup, find_packages, Distribution
 from opencood.version import __version__
-
 
 def _read_requirements_file():
     """Return the elements in requirements.txt."""
     req_file_path = '%s/requirements.txt' % dirname(realpath(__file__))
     with open(req_file_path) as f:
         return [line.strip() for line in f]
-
 
 setup(
     name='OpenCOOD',
@@ -27,4 +23,6 @@ setup(
                 'cooperative detection',
     long_description=open("README.md").read(),
     install_requires=_read_requirements_file(),
+    ext_modules=cythonize('opencood/utils/box_overlaps.pyx'),
+    include_dirs=[numpy.get_include()]
 )
