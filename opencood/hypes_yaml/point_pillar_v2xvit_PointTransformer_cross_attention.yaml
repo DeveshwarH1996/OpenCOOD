@@ -1,4 +1,4 @@
-name: point_pillar_v2xvit_point_transformer_with_cross_attention
+name: point_pillar_v2xvit_point_transformer_with_cross_attention_plus_20
 root_dir: 'v2xset/train'
 validate_dir: 'v2xset/validate'
 
@@ -103,7 +103,7 @@ model:
 
     pillar_cross_attention:
       kernel_size: 5
-      num_output_CA_features: 5
+      num_output_CA_features: 20
     
     base_bev_backbone:
       layer_nums: [3, 5, 8]
@@ -163,7 +163,7 @@ loss:
 
 optimizer:
   core_method: Adam
-  lr: 0.0005
+  lr: 0.00075
   args:
     eps: 1e-10
     weight_decay: 1e-4
